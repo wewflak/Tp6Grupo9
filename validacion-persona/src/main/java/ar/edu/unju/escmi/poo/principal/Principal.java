@@ -33,7 +33,7 @@ public class Principal {
 do {
 			
 		do {
-			System.out.println("\n1. Iniciar Sesion");
+			System.out.println("\n1. Iniciar Sesión");
 			System.out.println("2. Salir");
 			
 			band=true;
@@ -52,7 +52,7 @@ do {
 		System.out.println("\n*/*/*/**/*/   Menu   /*/*/*/*/*");
 		System.out.println("Ingrese su email");
 		correo = scan.next();
-		System.out.println("Ingrese su contrasena");
+		System.out.println("Ingrese su contraseña");
 		contrasena = scan.next();
 		try {
 		person = CollectionPersona.buscarPersona(correo, contrasena);
@@ -107,7 +107,7 @@ do {
 					}catch(Exception e2) {
 						if(e2 instanceof NoSuchElementException) {
 					
-				System.out.println("Ingrese la contrasena del usuario");
+				System.out.println("Ingrese la contraseña del usuario");
 				cs = scan.next();
 				try {
 				CollectionPersona.comprobarExistenciaContrasena(cs);
@@ -145,7 +145,7 @@ do {
 					else {System.out.println("\n");}
 				}
 				}catch(InputMismatchException ime) {
-					System.out.println("Ingrese el tipo correcto de dato");
+					System.out.println("\nIngrese el tipo correcto de dato");
 					scan.next();
 				}
 				}
@@ -183,7 +183,7 @@ do {
 				}
 				break;
 			case 4:
-				System.out.println("\nSesion cerrada exitosamente");
+				System.out.println("\nSesión cerrada exitosamente");
 			break;
 			default:
 				System.out.println("\nIngrese una de las opciones presentadas");
@@ -193,7 +193,7 @@ do {
 			}
 		catch(InputMismatchException ime) {
 			scan.next();
-			System.out.println("Ingrese el tipo correcto de dato");
+			System.out.println("\nIngrese el tipo correcto de dato");
 		}
 			}
 		else if(person.getUsuario().getRol().getDescripcion().contentEquals("Cliente")) {
@@ -221,7 +221,7 @@ do {
 									System.out.println("\n1. Cambiar nombre");
 									System.out.println("2. Cambiar apellido");
 									System.out.println("3. Cambiar DNI");
-									System.out.println("4. Salir del programa");
+									System.out.println("4. Salir");
 									try {
 										op2 = scan.nextInt();
 										switch(op2) {
@@ -238,15 +238,15 @@ do {
 											person.setDni(scan.nextLong());
 											break;
 										case 4:
-											System.out.println("Programa finalizado");
+											System.out.println("\nPrograma finalizado");
 											break;
 										default:
-												System.out.println("Ingrese una de las opciones presentadas");
+												System.out.println("\nIngrese una de las opciones presentadas");
 											break;
 											}
 									}catch(Exception e) {
 										scan.next();
-										System.out.println("Ingrese el tipo correcto de dato");
+										System.out.println("\nIngrese el tipo correcto de dato");
 									}
 								}while(op2!=4);
 								break;
@@ -254,7 +254,7 @@ do {
 								int op3=0;
 							do {
 								System.out.println("\n1. Cambiar email");
-								System.out.println("2. Cambiar contrasenia");
+								System.out.println("2. Cambiar contraseña");
 								System.out.println("3. Salir");
 								try {
 									op3 = scan.nextInt();
@@ -296,7 +296,7 @@ do {
 									}
 								}catch(InputMismatchException e) {
 									scan.next();
-									System.out.println("Ingrese el tipo correcto de dato");
+									System.out.println("\nIngrese el tipo correcto de dato");
 								}
 							}while(op3!=3);
 								break;
@@ -316,7 +316,7 @@ do {
 						CollectionPersona.mostrarDatos(person.getUsuario().getEmail());
 						break;
 					case 3:
-						System.out.println("\nSesion cerrada exitosamente");
+						System.out.println("\nSesión cerrada exitosamente");
 						break;
 					default:
 						System.out.println("\nIngrese una de las opciones presentadas");
@@ -331,7 +331,7 @@ do {
 		}
 		}else {
 			person.getUsuario().cambiarEstado(person);
-			System.out.println("\nSu tiempo activo ya expiro");
+			System.out.println("\nSu tiempo activo ya expiró");
 		}
 	}catch(Exception e) {
 		if(e instanceof NoSuchElementException) {

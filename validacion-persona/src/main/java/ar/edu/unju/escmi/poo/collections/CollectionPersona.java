@@ -27,7 +27,7 @@ public abstract class CollectionPersona {
 	}
 	public static void agregarPersona(Persona pe) throws Exception {
 		personas.add(pe);
-			System.out.println("Agregado");
+			System.out.println("Usuario agregado");
 	}
 	public static Persona buscarPersona(String email, String password) {
 		Persona person = null;
@@ -67,7 +67,7 @@ public abstract class CollectionPersona {
 				if(pe.getDni() == person.getDni()) {
 					encontrado.isEmpty();
 						if(encontrado.isEmpty()) {
-							System.out.println("DNI registrado anteriormente");
+							System.out.println("\nDNI registrado anteriormente\n");
 						}else if(encontrado.isPresent()) {
 							throw new Exception("Este DNI ya fue registrado");
 						}
@@ -75,9 +75,9 @@ public abstract class CollectionPersona {
 			}
 			}catch (Exception e) {
 				if(e instanceof NoSuchElementException) {
-					System.out.println("Contrasena no registrada anteriormente");
+					System.out.println("DNI no registrada anteriormente");
 				}else {
-					throw new Exception("Esta contrasena ya fue registrada");
+					throw new Exception("Este DNI ya fue registrado");
 				}
 			}
 		
@@ -94,7 +94,7 @@ public abstract class CollectionPersona {
 				if(pe.getUsuario().getEmail().equals(person.getUsuario().getEmail())) {
 					band = false;
 						if(band == false) {
-							System.out.println("Email  registrado anteriormente");
+							System.out.println("\nEmail  registrado anteriormente\n");
 						}else if(band==true) {
 							throw new Exception("Este Email ya fue registrado");
 						}
@@ -102,9 +102,9 @@ public abstract class CollectionPersona {
 			}
 			}catch (Exception e) {
 				if(e instanceof NoSuchElementException) {
-					System.out.println("Contrasena no registrada anteriormente");
+					System.out.println("Email no registrada anteriormente");
 				}else {
-					throw new Exception("Esta contrasena ya fue registrada");
+					throw new Exception("Este email ya fue registrado");
 				}
 		}
 		
@@ -120,17 +120,17 @@ public abstract class CollectionPersona {
 				if(pe.getUsuario().getPassword().equals(person.getUsuario().getPassword())){
 					encontrado.isEmpty();
 						if(encontrado.isEmpty()) {
-							System.out.println("Contrasena registrada anteriormente");
+							System.out.println("\nContraseña registrada anteriormente\n");
 						}else if(encontrado.isPresent()) {
-							throw new Exception("Esta contrasena ya fue registrada");
+							throw new Exception("Esta contraseña ya fue registrada");
 						}
 			}
 			}
 			}catch (Exception e) {
 				if(e instanceof NoSuchElementException) {
-					System.out.println("Contrasena no registrada anteriormente");
+					System.out.println("Contraseña no registrada anteriormente");
 				}else {
-					throw new Exception("Esta contrasena ya fue registrada");
+					throw new Exception("Esta contraseña ya fue registrada");
 				}
 			
 			}
