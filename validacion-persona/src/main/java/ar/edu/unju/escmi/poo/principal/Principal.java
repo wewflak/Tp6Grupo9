@@ -209,7 +209,7 @@ do {
 					case 1:
 						op1=0;
 						do {
-							System.out.println("1. Cambiar datos de persona");
+							System.out.println("\n1. Cambiar datos de persona");
 							System.out.println("2. Cambiar datos de usuario");
 							System.out.println("3. Salir");
 						try {
@@ -218,7 +218,7 @@ do {
 							case 1:
 								int op2=0;
 								do {
-									System.out.println("1. Cambiar nombre");
+									System.out.println("\n1. Cambiar nombre");
 									System.out.println("2. Cambiar apellido");
 									System.out.println("3. Cambiar DNI");
 									System.out.println("4. Salir del programa");
@@ -245,14 +245,15 @@ do {
 											break;
 											}
 									}catch(Exception e) {
-										e.toString();
+										scan.next();
+										System.out.println("Ingrese el tipo correcto de dato");
 									}
 								}while(op2!=4);
 								break;
 							case 2:			
 								int op3=0;
 							do {
-								System.out.println("1. Cambiar email");
+								System.out.println("\n1. Cambiar email");
 								System.out.println("2. Cambiar contrasenia");
 								System.out.println("3. Salir");
 								try {
@@ -294,7 +295,8 @@ do {
 									break;
 									}
 								}catch(InputMismatchException e) {
-									System.out.println(e.toString());
+									scan.next();
+									System.out.println("Ingrese el tipo correcto de dato");
 								}
 							}while(op3!=3);
 								break;
@@ -304,7 +306,8 @@ do {
 							}
 							
 						}catch(InputMismatchException e) {
-							System.out.println(e.toString());
+							scan.next();
+							System.out.println("\nIngrese el tipo correcto de dato\n");
 						}
 						
 						}while(op1!=3);
