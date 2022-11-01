@@ -2,6 +2,7 @@ package ar.edu.unju.escmi.poo.dominio;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 public class Usuario {
 	
@@ -72,8 +73,8 @@ public String toString() {
 
 public boolean controlarDuracionRol() {
     try {
-        Period period = Period.between(this.fechaAlta, LocalDate.now());
-        if (period.getDays() <= 20) {
+    	long periodoActivo = ChronoUnit.DAYS.between(this.fechaAlta, LocalDate.now());
+        if (periodoActivo <= 20) {
             return true;
         } else {
             return false;
@@ -84,7 +85,7 @@ public boolean controlarDuracionRol() {
 }
 public void cambiarEstado(Persona person) {
 	Period period = Period.between(this.fechaAlta, LocalDate.now());
-	if(period.getDays()<=20) {
+	if(controlarDuracionRol()==true) {
 		person.getUsuario().setEstado(true);
 	}else {
 		person.getUsuario().setEstado(false);

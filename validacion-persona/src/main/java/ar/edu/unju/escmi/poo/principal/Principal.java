@@ -31,38 +31,52 @@ public class Principal {
 		Scanner scan = new Scanner( System.in);
 		// TODO Auto-generated method stub
 do {
-		try {
 			
 		do {
-			System.out.println("1. Iniciar Sesion");
+			System.out.println("\n1. Iniciar Sesion");
 			System.out.println("2. Salir");
 			band=true;
+
+			try {
+				opPrimigenio=0;
 			opPrimigenio = scan.nextInt();
+			}catch(InputMismatchException ime) {
+				scan.next();
+				System.out.println("Ingrese el tipo correcto de dato");
+			}
 		switch(opPrimigenio) {
 		case 1:
 		band=false;
 		while(band==false) {
-		System.out.println("*/*/*/**/*/   Menu   /*/*/*/*/*");
+		System.out.println("\n*/*/*/**/*/   Menu   /*/*/*/*/*");
 		System.out.println("Ingrese su email");
 		correo = scan.next();
 		System.out.println("Ingrese su contrasena");
 		contrasena = scan.next();
 		try {
-			band=true;
 		person = CollectionPersona.buscarPersona(correo, contrasena);
-		System.out.println("Se encontro la persona " + person.getUsuario().getRol().getDescripcion());
-		person.getUsuario().controlarDuracionRol();
-		if(person.getUsuario().controlarDuracionRol() == true) {
-			person.getUsuario().cambiarEstado(person);
+		person.getUsuario().cambiarEstado(person);
+		band=true;
+		if(person.getUsuario().isEstado()==true) {
+			
 		if(person.getUsuario().getRol().getDescripcion().contentEquals("Admin")) {
 			try {
 			do {
-				System.out.println("------ Menu Administrador ------");
+				System.out.println("\n------ Menu Administrador ------");
 				System.out.println("1. Alta de persona");
 				System.out.println("2. Buscar un usuario por su email y mostrar todos sus datos");
 				System.out.println("3. Extender tiempo de un usuario");
 				System.out.println("4. Salir");
+				try {
 				op=scan.nextInt();
+				}catch(Exception e) {
+					if(e instanceof InputMismatchException) {
+						scan.next();
+						System.out.println("Ingrese el tipo de dato correcto");
+					}else {
+						System.out.println(e);
+					}
+				}
 			switch(op) {
 			
 			case 1:
@@ -78,6 +92,7 @@ do {
 				System.out.println("Ingrese el apellido de la persona para el usuario");
 				ap = scan.next();
 				System.out.println("Ingrese el dni de la persona para el usuario");
+				try {
 				dn = scan.nextLong();
 				try {
 				CollectionPersona.buscarPersonaPorDni(dn);
@@ -121,12 +136,16 @@ do {
 					break;
 				}
 				band=true;
-					}else {System.out.println("/n");}
+					}else {System.out.println("\n");}
 					}
 				}else {System.out.println("\n");}
 					}
 					}
 					else {System.out.println("\n");}
+				}
+				}catch(InputMismatchException ime) {
+					System.out.println("Ingrese el tipo correcto de dato");
+					scan.next();
 				}
 				}
 				break;
@@ -138,17 +157,22 @@ do {
 						System.out.println("Ingrese un email");
 						correo = scan.next();
 						person = CollectionPersona.buscarPorEmail(correo);
+						
 						CollectionPersona.mostrarDatos(correo);
 						System.out.println(FechaUtil.calcularTiempoActivo(person.getUsuario().getFechaAlta()));
 						band=true;
 					}catch(Exception e){
+						if(e instanceof NoSuchElementException) {
+						System.out.println("  ");
+					}else {
 						System.out.println(e);
+					}
 					}
 				}
 				break;
 			
 			case 3:
-				System.out.println("Ingrese el email del nuevo usuario");
+				System.out.println("Ingrese el email del usuario");
 				correo = scan.next();
 				person = CollectionPersona.buscarPorEmail(correo);
 				try {
@@ -159,22 +183,23 @@ do {
 				}
 				break;
 			case 4:
-				System.out.println("Programa finalizado con exito");
+				System.out.println("\nSesion cerrada exitosamente");
 			break;
 			default:
-				System.out.println("Ingrese una opcion deseada");
+				System.out.println("\nIngrese una de las opciones presentadas");
 				break;
 			}
 			}while(op!=4);
 			}
 		catch(InputMismatchException ime) {
+			scan.next();
 			System.out.println("Ingrese el tipo correcto de dato");
 		}
 			}
 		else if(person.getUsuario().getRol().getDescripcion().contentEquals("Cliente")) {
 			op=0;
 			do {
-				System.out.println("****** Menu Cliente ******");
+				System.out.println("\n****** Menu Cliente ******");
 				System.out.println("1. Cambiar datos de usuario");
 				System.out.println("2. Mostrar datos de tu usuario");
 				System.out.println("3. Salir");
@@ -265,7 +290,7 @@ do {
 										}
 										break;
 									default:
-										System.out.println("Ingrese una de las opciones presentadas");
+										System.out.println("\nIngrese una de las opciones presentadas");
 									break;
 									}
 								}catch(InputMismatchException e) {
@@ -274,7 +299,7 @@ do {
 							}while(op3!=3);
 								break;
 							default:
-								System.out.println("Ingrese una de las opciones presentadas");
+								System.out.println("\nIngrese una de las opciones presentadas");
 							break;
 							}
 							
@@ -287,35 +312,46 @@ do {
 					case 2:
 						CollectionPersona.mostrarDatos(person.getUsuario().getEmail());
 						break;
+					case 3:
+						System.out.println("\nSesion cerrada exitosamente");
+						break;
+					default:
+						System.out.println("\nIngrese una de las opciones presentadas");
+						break;
 					}
 				}catch(InputMismatchException e) {
-					System.out.println(e.toString());
+					scan.next();
+					System.out.println("\nIngrese el tipo correcto de dato");
+					
 				}
 			}while(op!=3);
 		}
 		}else {
 			person.getUsuario().cambiarEstado(person);
-			System.out.println("Su tiempo activo ya expiro");
+			System.out.println("\nSu tiempo activo ya expiro");
 		}
-	}catch(NoSuchElementException nse) {
-		System.out.println(nse);
-		System.out.println("No existe esa persona");
-		System.out.print(ESC + "2J"); 
+	}catch(Exception e) {
+		if(e instanceof NoSuchElementException) {
+		System.out.println("\nNo existe esa persona");
+		}else {
+			System.out.println(e);
+		}
 	}
-scan.close();
 		}
 		break;
 		case 2:
 			System.out.println("Programa finalizado");
 			break;
+		default:
+			System.out.println("\nIngrese una de las opciones presentadas");
+			break;
 		}band=true;
 			
 		}while(opPrimigenio!=2);
-		}catch(InputMismatchException ime) {
-				System.out.println("Ingrese el tipo correcto de dato");
-			}
-	}while(band==false);
 		
+	}while(band==false);
+
+scan.close();
 		///Maven build-- Goals = package
 
 		

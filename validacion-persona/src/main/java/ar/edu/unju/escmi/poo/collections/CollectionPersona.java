@@ -27,9 +27,7 @@ public abstract class CollectionPersona {
 	}
 	public static void agregarPersona(Persona pe) throws Exception {
 		personas.add(pe);
-		if(comprobarExistenciaEmail(pe.getUsuario().getEmail())==false) {
 			System.out.println("Agregado");
-		}
 	}
 	public static Persona buscarPersona(String email, String password) {
 		Persona person = null;
@@ -41,15 +39,21 @@ public abstract class CollectionPersona {
 	}
 	public static Persona buscarPorEmail(String correo) {
 		Persona person = null;
+		Optional<Persona> encontrado= Optional.empty();
 		try {
 			person = personas.stream().filter(p-> p.getUsuario().getEmail().contentEquals(correo)).findFirst().get();
-			if(person!=null) {
+			encontrado =personas.stream().filter(p-> p.getUsuario().getEmail().contentEquals(correo)).findFirst();
+			if(encontrado.isPresent()) {
 				System.out.println(" ");
 			}else {
 				System.out.println("El usuario no existe");
 			}
 		}catch(Exception e) {
-			System.out.println(e);
+			if(e instanceof NoSuchElementException) {
+			System.out.println(" ");
+			}else {
+				System.out.println(e);
+			}
 		}
 		return person;
 	}
