@@ -35,6 +35,7 @@ do {
 		do {
 			System.out.println("\n1. Iniciar Sesion");
 			System.out.println("2. Salir");
+			
 			band=true;
 
 			try {
@@ -159,7 +160,6 @@ do {
 						person = CollectionPersona.buscarPorEmail(correo);
 						
 						CollectionPersona.mostrarDatos(correo);
-						System.out.println(FechaUtil.calcularTiempoActivo(person.getUsuario().getFechaAlta()));
 						band=true;
 					}catch(Exception e){
 						if(e instanceof NoSuchElementException) {
@@ -359,22 +359,5 @@ scan.close();
 
 		
 }
-	public static void clrscr(){
-
-	    //Clears Screen in java
-
-	    try {
-
-	        if (System.getProperty("os.name").contains("Windows"))
-
-	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-
-	        else
-
-	            Runtime.getRuntime().exec("clear");
-
-	    } catch (IOException | InterruptedException ex) {}
-
-	}
 
 }

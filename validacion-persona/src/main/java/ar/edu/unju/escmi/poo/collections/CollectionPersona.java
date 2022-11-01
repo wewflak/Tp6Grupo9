@@ -17,7 +17,7 @@ public abstract class CollectionPersona {
 			personas = new ArrayList<Persona>();
 			CollectionRol.getRoles();
 			Usuario user = new Usuario("aabb@gmail.com", "123", true, LocalDate.parse("2022-10-20"), CollectionRol.roles.get(0));
-			Usuario user2 = new Usuario("ccdd@gmail.com", "123456", true, LocalDate.now(), CollectionRol.roles.get(1));
+			Usuario user2 = new Usuario("ccdd@gmail.com", "123456", true, LocalDate.parse("2022-10-01"), CollectionRol.roles.get(1));
 			 person = new Persona("aaa", "bbb", (long) 5151, user);
 			 person2 = new Persona("ccc", "ddd", (long) 1212, user2);
 			personas.add(person);
